@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="headerContainer">
+      <ion-buttons>
+        <ion-button fill="clear" (click)="goBack()">
+          <ion-icon name="arrow-back-outline" style="font-size: 22px; margin-left: 1%; color: white;"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>
+        Create message
+      </ion-title>
+    </div>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">
+        Create
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-input label="Send to" labelPlacement="stacked" placeholder="email@domain.com" (click)="openModal()" [(ngModel)]="usuario" readonly required>
+        <ion-icon name="paper-plane-outline" slot="start" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Subject" labelPlacement="stacked" placeholder="Subject" [(ngModel)]="subject" required>
+        <ion-icon name="document-text-outline" slot="start" aria-hidden="true"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Message" labelPlacement="stacked" placeholder="Enter text" [(ngModel)]="message" auto-grow="true" required>
+      </ion-textarea>
+    </ion-item>
+
+      <ion-chip [style.display]="downloadUrl ? 'inline-flex' : 'none'">
+        <ion-icon name="camera-outline" color="primary" id="open-modal"></ion-icon>
+        <ion-label id="open-modal">Image</ion-label>
+          <ion-icon name="close-circle" (click)="removeImage()"></ion-icon>  
+      </ion-chip>
+
+    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>Image</ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content class="image-modal-content" scroll-y="false">
+          <img [src]="downloadUrl" alt="Imagen" class="modal-image" />
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+  </ion-list>
+  <ion-toast [isOpen]="isToastOpen" message="Es necesario llenar todos los campos del formulario" [duration]="5000"></ion-toast>
+
+</ion-content>
+  @if(isLoading){
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  }
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="betterRedaction()">
+      <ion-icon name="sparkles-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="takePhoto()">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>
+    <ion-button (click)="sendMessage()">Send</ion-button>
+  </ion-title>
+</ion-toolbar>

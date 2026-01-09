@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Inbox
+    </ion-title>
+    <ion-chip slot="end">
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>{{username}}</ion-label>
+      <ion-icon name="close-circle" id="logout"></ion-icon>
+    </ion-chip>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">
+        Inbox
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-list *ngIf="messages.length > 0; else noMessages">
+  <ion-item-sliding *ngFor="let message of messages; trackBy: trackById">
+    <ion-item>
+      <div style="width: 100%;">
+        <app-message [message]="message"></app-message>
+      </div>
+    </ion-item>
+
+    <ion-item-options>
+      <ion-item-option color="danger" (click)="deleteMessage(message.id)">
+        <ion-icon style="font-size: 24px;" name="trash-outline"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+<ng-template #noMessages>
+  <ion-text color="medium" class="ion-padding">
+    <div class="noMessages">
+      <ion-icon name="mail-open-outline" style="font-size: 150px;"></ion-icon>
+      <p style="text-align: center;">Your inbox is empty.</p>
+    </div>
+  </ion-text>
+</ng-template>
+
+  <ion-fab  slot="fixed" vertical="bottom" horizontal="end" [routerLink]="['/create-message']">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-alert
+    trigger="logout"
+    header="Logout"
+    message="Are you sure you want to log out?"
+    [buttons]="logoutButtons"
+    (didDismiss)="setResult($event)"
+  ></ion-alert>
+
+</ion-content>

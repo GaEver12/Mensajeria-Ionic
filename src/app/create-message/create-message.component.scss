@@ -1,0 +1,47 @@
+ion-textarea{
+  height: 400px;
+}
+textarea{
+  height: 400px;
+}
+ion-button{
+    margin-top: 1%;
+}
+.headerContainer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.backButton {
+  --padding-start: 0;
+  --padding-end: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.backButton ion-icon {
+  font-size: 22px;
+  color: white;
+}
+
+.image-modal-content {
+  --padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.modal-image {
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}

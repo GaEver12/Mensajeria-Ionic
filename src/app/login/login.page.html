@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="container">
+    <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="username" label="Username:" labelPlacement="stacked"></ion-input>
+      </ion-item>
+      <ion-button expand="block" style="background-color: transparent;" (click)="login()">Login</ion-button>
+      <ion-toast
+        [isOpen]="isToastOpen"
+        message="Usuario no encontrado o no se ingreso ningun caracter"
+        [duration]="5000"
+        (didDismiss)="setOpen(false)"
+      ></ion-toast>
+    </ion-list>
+  </div>
+    
+</ion-content>
